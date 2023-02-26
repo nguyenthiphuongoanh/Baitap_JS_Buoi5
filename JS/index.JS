@@ -88,21 +88,39 @@ document.getElementById('btnTinhTienThue').onclick = function () {
     //  Bước 1: tính thu nhập chịu thuế
     thuNhapChiuThue = tongThuNhapNam - 4000000 - (soNguoiPhuThuoc * 1600000)
     // Bước 2: tính thuế TNCN
-    if (thuNhapChiuThue <= 60000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 5 / 100
-    } else if (thuNhapChiuThue > 60000000 && thuNhapChiuThue <= 120000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 10 / 100
-    } else if (thuNhapChiuThue > 120000000 && thuNhapChiuThue <= 210000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 15 / 100
-    } else if (thuNhapChiuThue > 210000000 && thuNhapChiuThue <= 384000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 20 / 100
-    } else if (thuNhapChiuThue > 384000000 && thuNhapChiuThue <= 624000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 25 / 100
-    } else if (thuNhapChiuThue > 624000000 && thuNhapChiuThue <= 960000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 30 / 100
+    // if (thuNhapChiuThue <= 60000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 5 / 100
+    // } else if (thuNhapChiuThue > 60000000 && thuNhapChiuThue <= 120000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 10 / 100
+    // } else if (thuNhapChiuThue > 120000000 && thuNhapChiuThue <= 210000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 15 / 100
+    // } else if (thuNhapChiuThue > 210000000 && thuNhapChiuThue <= 384000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 20 / 100
+    // } else if (thuNhapChiuThue > 384000000 && thuNhapChiuThue <= 624000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 25 / 100
+    // } else if (thuNhapChiuThue > 624000000 && thuNhapChiuThue <= 960000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 30 / 100
+    // }
+    // else if (thuNhapChiuThue > 960000000) {
+    //     thueThuNhapCaNhan = thuNhapChiuThue * 35 / 100
+    // }
+    if  (thuNhapChiuThue <= 0) {
+        alert('vui lòng nhập số tổng thu nhập năm hợp lệ')
+    }else if(thuNhapChiuThue > 0 && thuNhapChiuThue <= 60e6) {
+        thueThuNhapCaNhan = thuNhapChiuThue * 0.05
+    } else if (thuNhapChiuThue > 60e6 && thuNhapChiuThue <= 120e6) {
+        thueThuNhapCaNhan = (60e6 * 0.05) + ((thuNhapChiuThue - 60e6) * 0.1)
+    } else if (thuNhapChiuThue > 120e6 && thuNhapChiuThue <= 210e6) {
+        thueThuNhapCaNhan = (60e6 * 0.05) + (120e6 * 0.1) + ((thuNhapChiuThue - 120e6) * 0.15)
+    } else if (thuNhapChiuThue > 210e6 && thuNhapChiuThue <= 384e6) {
+        thueThuNhapCaNhan = (60e6 * 0.05) + (120e6 * 0.1) + (210e6 * 0.15) + ((thuNhapChiuThue - 210e6) * 0.2)
+    } else if (thuNhapChiuThue > 384e6 && thuNhapChiuThue <= 624e6) {
+        thueThuNhapCaNhan = (60e6 * 0.05) + (120e6 * 0.1) + (210e6 * 0.15) + (384e6 * 0.2) + ((thuNhapChiuThue - 384e6) * 0.25)
+    } else if (thuNhapChiuThue > 624e6 && thuNhapChiuThue <= 960e6) {
+        thueThuNhapCaNhan = (60e6 * 0.05) + (120e6 * 0.1) + (210e6 * 0.15) + (384e6 * 0.2) + (624e6 * 0.25) + ((thuNhapChiuThue - 624e6) * 0.3)
     }
-    else if (thuNhapChiuThue > 960000000) {
-        thueThuNhapCaNhan = thuNhapChiuThue * 35 / 100
+    else if (thuNhapChiuThue > 960e6) {
+        thueThuNhapCaNhan = (60e6 * 0.05) + (120e6 * 0.1) + (210e6 * 0.15) + (384e6 * 0.2) + (624e6 * 0.25) + (960e6 * 0.3)+ ((thuNhapChiuThue - 960e6) * 0.35)
     }
 
     document.getElementById('ketQuaBai3').innerHTML = 'Họ tên: ' + hoTenBai3 + '; ' + 'Tiền thuế thu nhập cá nhân: ' + thueThuNhapCaNhan.toLocaleString() + ' VND';
